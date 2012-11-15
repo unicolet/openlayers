@@ -49,7 +49,23 @@
     <script defer="defer" type="text/javascript">
     OpenLayers.ProxyHost = "proxy.cgi?url=";
     var map, infocontrols, water, highlightlayer;
-    
+
+    /*
+     Monkey patch example.
+     */
+    /*OpenLayers.Handler.Click.prototype.mousedown=function(evt) {
+        if(evt.xy && (evt.xy.x <= 0.0 && evt.xy.y <= 0.0)) {
+            console.log('ignoring mousedown:' + evt.xy);
+            return true;
+        }
+        console.log('mousedown');
+        this.down = this.getEventInfo(evt);
+        this.last = this.getEventInfo(evt);
+        console.log('mousedown '+this.down.xy);
+        console.log(evt);
+        return true;
+    };*/
+
     function load() {
         map = new OpenLayers.Map('map', {
             maxExtent: new OpenLayers.Bounds(143.834,-43.648,148.479,-39.573)
